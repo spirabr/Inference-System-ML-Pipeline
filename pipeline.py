@@ -55,13 +55,13 @@ if __name__=="__main__":
   register_model_in_mlflow()
 
   model_path = "models:/"+model_name+"/Production"
-  directory = "./" + model_name + "/"
+  directory = os.environ["PATH-TO-PROJECT"] + "/" + model_name + "/"
 
   Repo.clone_from(os.environ["REPOSITORY_URL"], directory)
 
   substitute_occurence_in_file('your-model-name-here', model_name, directory,"docker-compose.server.yml")
   substitute_occurence_in_file('your-model-name-here', model_name, directory,"build-server.sh")
   substitute_occurence_in_file('your-model-name-here', model_name, directory,"stop-server.sh")
-  substitute_occurence_in_file('/path-to-project/', "/home/spira-inference-system/model-deploys/" + model_name + "/", directory,"docker-compose-model@.service")
+  substitute_occurence_in_file('/path-to-project/', directory, directory,"docker-compose-model@.service")
   substitute_occurence_in_file('your-model-topic-here', model_topic_name, directory,"example.env",new_filename = ".env")
   substitute_occurence_in_file('your-model-mlflow-path-here', model_path, directory,".env")
