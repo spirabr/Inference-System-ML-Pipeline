@@ -23,7 +23,7 @@ def register_model_in_database(name, topic):
   response_dict = json.loads(token_response.text)
   token = response_dict["access_token"]
 
-  requests.post(os.environ["MODEL_CREATION_ENDPOINT"], headers={"Authorization": "Bearer " + token}, data={"name": name, "publishing_channel": topic})
+  requests.post(os.environ["MODEL_CREATION_ENDPOINT"], headers={"Authorization": "Bearer " + token, "Content-Type": "application-json"}, data=json.dumps({"name": name, "publishing_channel": topic}))
   print("model successfully registered in database!")
 
 def substitute_occurence_in_file(occurence, replacement, dir, filename, new_filename = ""):
@@ -60,8 +60,8 @@ if __name__=="__main__":
   substitute_occurence_in_file('your-model-name-here', model_name, directory,"build-server.sh")
   substitute_occurence_in_file('your-model-name-here', model_name, directory,"stop-server.sh")
   substitute_occurence_in_file('/path-to-project/', directory, directory,"docker-compose-model@.service")
-  substitute_occurence_in_file('your-model-topic-here', model_topic_name, directory,".env")
+  substitute_occurence_in_file('your-model-topic-here', model_topic_name, directory,"example.env", new_filename=".env")
   substitute_occurence_in_file('your-model-mlflow-path-here', model_path, directory,".env")
 
   print("model server setup is complete.")
-  print("WARNING: do not forget to change model version in MLFlow to Production!")
+  print("WARNING: do not forget to change model version in MLFlow to Production and start the service!")
