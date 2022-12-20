@@ -55,7 +55,7 @@ if __name__=="__main__":
   register_model_in_mlflow()
 
   model_path = "models:/"+model_name+"/Production"
-  directory = os.environ["PATH-TO-PROJECT"] + "/" + model_name + "/"
+  directory = os.environ["PATH_TO_PROJECT"] + "/" + model_name + "/"
 
   Repo.clone_from(os.environ["REPOSITORY_URL"], directory)
 
