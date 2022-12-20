@@ -19,7 +19,7 @@ def register_model_in_database(name, topic):
   print("registering model in database...")
   import requests
   import json
-  token_response = requests.post(os.environ["AUTH_ENDPOINT"])
+  token_response = requests.post(os.environ["AUTH_ENDPOINT"],data={"username": os.environ["ACCESS_USER"], "password": os.environ["ACCESS_KEY"]})
   response_dict = json.loads(token_response.text)
   token = response_dict["access_token"]
 
