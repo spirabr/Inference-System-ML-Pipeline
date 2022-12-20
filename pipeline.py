@@ -63,5 +63,5 @@ if __name__=="__main__":
   substitute_occurence_in_file('your-model-name-here', model_name, directory,"build-server.sh")
   substitute_occurence_in_file('your-model-name-here', model_name, directory,"stop-server.sh")
   substitute_occurence_in_file('/path-to-project/', directory, directory,"docker-compose-model@.service")
-  substitute_occurence_in_file('your-model-topic-here', model_topic_name, directory,"example.env",new_filename = ".env")
+  substitute_occurence_in_file('your-model-topic-here', model_topic_name, directory,".env")
   substitute_occurence_in_file('your-model-mlflow-path-here', model_path, directory,".env")
