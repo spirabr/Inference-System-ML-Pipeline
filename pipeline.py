@@ -1,6 +1,7 @@
 import mlflow
 from git import Repo
 import os
+from dotenv import load_dotenv
 
 def register_model_in_mlflow():
   print("registering model in mlflow...")
@@ -41,6 +42,8 @@ def substitute_occurence_in_file(occurence, replacement, dir, filename, new_file
     os.rename(dir + "/tmp",dir + filename)
 
 if __name__=="__main__":
+  load_dotenv()
+
   model_name = os.environ["MODEL_NAME"]
   model_topic_name = os.environ["MODEL_TOPIC"]
 
@@ -52,7 +55,7 @@ if __name__=="__main__":
 
   print("creating model server project...")
   Repo.clone_from(os.environ["REPOSITORY_URL"], directory)
-  
+
   substitute_occurence_in_file('your-model-name-here', model_name, directory,"docker-compose.server.yml")
   substitute_occurence_in_file('your-model-name-here', model_name, directory,"build-server.sh")
   substitute_occurence_in_file('your-model-name-here', model_name, directory,"stop-server.sh")
