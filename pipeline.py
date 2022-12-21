@@ -12,12 +12,12 @@ class ModelTemplate(PythonModel):
       pass
 
     def predict(self, context, model_input) -> Tuple[List[float],str]:
+      # model predict method should be implemented here
       pass
 
 
 def register_model_in_mlflow():
   print("registering model in mlflow...")
-  from model import ModelTemplate
   mlflow.set_tracking_uri(os.environ["MLFLOW_CONN_URL"])
   model = ModelTemplate()
   mlflow.pyfunc.log_model(
