@@ -2,6 +2,18 @@ import mlflow
 from git import Repo
 import os
 from dotenv import load_dotenv
+from typing import List, Tuple
+from mlflow.pyfunc import PythonModel
+
+
+class ModelTemplate(PythonModel):
+
+    def load_context(self, context) -> None:
+      pass
+
+    def predict(self, context, model_input) -> Tuple[List[float],str]:
+      pass
+
 
 def register_model_in_mlflow():
   print("registering model in mlflow...")
