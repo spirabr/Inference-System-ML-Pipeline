@@ -19,7 +19,6 @@ def register_model(model_name, model_topic_name):
   register_model_in_database(model_name, model_topic_name)
   register_model_in_mlflow()
 
-
 def register_model_in_mlflow():
   print("registering model in mlflow...")
   mlflow.set_tracking_uri(os.environ["MLFLOW_CONN_URL"])
