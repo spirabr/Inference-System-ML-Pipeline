@@ -93,4 +93,4 @@ Create a symbolic link between a .service file in the directory /etc/systemd/sys
 
 You may need to ask for someone with the right credentials to execute this last step.
 
-Once tou are finished, the model should be available for inferences.
+The model should now be available for inferences in production.
